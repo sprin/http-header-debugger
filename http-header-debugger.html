@@ -25,11 +25,13 @@
 
 <template name="results">
 <p>Headers the server saw:</p>
-<dl>
+<table>
     {{#each headers}}
-<dt>{{ this.name }}</dt>
-<dd>{{ this.value }}</dd>
+<tr>
+<td>{{ this.name }}</td>
+<td>{{ this.value }}</td>
+</tr>
     {{/each}}
-</dl>
+</table>
 </template>
 

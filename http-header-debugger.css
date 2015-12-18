@@ -45,23 +45,10 @@ form {
   position: relative;
 }
 
-dl {
-  padding: 0.5em;
+table {
   font-size: 10px;
 }
-dt {
-  float: left;
-  clear: left;
-  width: 150px;
-  text-align: left;
+tr > td:first-child {
   font-weight: bold;
   color: green;
-  padding: 0 0 1em 0;
-}
-dt:after {
-  content: ": ";
-}
-dd {
-  margin: 0 0 0 110px;
-  padding: 0 0 1em 0;
 }
