@@ -7,26 +7,52 @@
     <header>
       <h1><s>Todo List</s> HTTP Header Debugger</h1>
 
+      <p>Submit the request as-is, or enter some custom headers. All headers
+      the server actually receives will be displayed in the results.</p>
       <form class="request">
-        <p>Method <input type="text" name="method"/></p>
+        <p>Method <input type="text" name="method" value="POST"/></p>
         <p>URL <input type="text" name="url" value="/api/"></p>
-        <p>Header 1: Name <input type="text" name="header1_name"/>
-           Value <input type="text" name="header1_value"/></p>
-        <p>Header 2: Name <input type="text" name="header2_name"/>
-           Value <input type="text" name="header2_value"/></p>
-        <p>Header 3: Name <input type="text" name="header3_name"/>
-           Value <input type="text" name="header3_value"/></p>
+        <p>Response headers</p>
+        <p>Header 1: Name <input type="text" name="req_header1_name"/>
+           Value <input type="text" name="req_header1_value"/></p>
+        <p>Header 2: Name <input type="text" name="req_header2_name"/>
+           Value <input type="text" name="req_header2_value"/></p>
+        <p>Header 3: Name <input type="text" name="req_header3_name"/>
+           Value <input type="text" name="req_header3_value"/></p>
+        <p>Ask server to send custom response headers?<input id="show-resp-headers" type="checkbox"/></p>
+        <div class="response-headers" style="display: none">
+        <p>The request will contain a JSON message in the body containing a list of headers the server should return.</p>
+        <p>Header 1: Name <input type="text" name="resp_header1_name"/>
+           Value <input type="text" name="resp_header1_value"/></p>
+        <p>Header 2: Name <input type="text" name="resp_header2_name"/>
+           Value <input type="text" name="resp_header2_value"/></p>
+        <p>Header 3: Name <input type="text" name="resp_header3_name"/>
+           Value <input type="text" name="resp_header3_value"/></p>
+        </div>
         <p><input type="submit"/></p>
       </form>
     </header>
+    <div id="results-container">
+    <h2>Results</h2>
     <div id="results"></div>
+    <p>* Duplicate header values are always combined client-side.</p>
+    </div>
   </div>
 </body>
 
 <template name="results">
-<p>Headers the server saw:</p>
+<p>Request headers the server saw:</p>
 <table>
-    {{#each headers}}
+    {{#each seen_req_headers}}
+<tr>
+<td>{{ this.name }}</td>
+<td>{{ this.value }}</td>
+</tr>
+    {{/each}}
+</table>
+<p>Response headers received by client:</p>
+<table>
+    {{#each seen_resp_headers}}
 <tr>
 <td>{{ this.name }}</td>
 <td>{{ this.value }}</td>
