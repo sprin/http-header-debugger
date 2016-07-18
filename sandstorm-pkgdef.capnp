@@ -1,4 +1,4 @@
-@0x883e6eeef30755a7;
+@0xe89b0e2d5a5a2cf3;
 
 using Spk = import "/sandstorm/package.capnp";
 # This imports:
@@ -9,7 +9,7 @@ const pkgdef :Spk.PackageDefinition = (
   # The package definition. Note that the spk tool looks specifically for the
   # "pkgdef" constant.
 
-  id = "u3agt06j2g56q9374g6j8qz2rt1jf813zxuxc0v1xehuqj33pzw0",
+  id = "vaz8vs3zvkad4d6dgtd4r26rjv4mkzas09kp8tde8cucnxkz6vn0",
   # Your app ID is actually its public key. The private key was placed in
   # your keyring. All updates must be signed with the same key.
 
@@ -27,7 +27,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     actions = [
       # Define your "new document" handlers here.
-      ( title = (defaultText = "New debugger"),
+      ( nounPhrase = (defaultText = "New debugger"),
         command = .myCommand
         # The command to run when starting for the first time. (".myCommand"
         # is just a constant defined at the bottom of the file.)
@@ -137,8 +137,8 @@ const pkgdef :Spk.PackageDefinition = (
   sourceMap = (
     # The following directories will be copied into your package.
     searchPath = [
-      ( sourcePath = "/home/vagrant/bundle" ),
-      ( sourcePath = "/opt/meteor-spk/meteor-spk.deps" )
+      ( sourcePath = ".meteor-spk/deps" ),
+      ( sourcePath = ".meteor-spk/bundle" )
     ]
   ),
 
@@ -220,7 +220,7 @@ const pkgdef :Spk.PackageDefinition = (
 
 const myCommand :Spk.Manifest.Command = (
   # Here we define the command used to start up your server.
-  argv = ["/sandstorm-http-bridge", "8000", "--", "/opt/app/.sandstorm/launcher.sh"],
+  argv = ["/sandstorm-http-bridge", "4000", "--", "node", "start.js"],
   environ = [
     # Note that this defines the *entire* environment seen by your app.
     (key = "PATH", value = "/usr/local/bin:/usr/bin:/bin"),
